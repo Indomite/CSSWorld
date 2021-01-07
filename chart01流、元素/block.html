@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        padding: 10px;
+        background-color: #cd0000;
+    }
+    .box > img {
+        float: left;
+    }
+
+    .clear:after {
+        content: "1";
+        /* display: block; */
+        /* display: table; */
+        /* 
+            IE不支持这种方式，不使用其清除浮动主要是后续添加了元素
+            在ie中伪元素无法创建item-list中前面的符号标记，导致在IE下无法显示
+        */
+        display: list-item;
+        clear: both;
+    }
+
+    p {
+        /* 
+            block其实是由外在的块级盒子和内在的块级容器盒子组成
+            inline-block就是外在的内联盒子和内在的块级容器盒子组成
+                也就是这种原因使得inline-block可以在一行显示（inline）也可以设置宽高（block）
+            inline就是内外都是内联盒子的
+
+            宽高会作用在内在盒子上
+         */
+        display: inline-block;
+        width: 50px;
+        background: lightgreen;
+    }
+</style>
+<body>
+    <div class="box clear">
+        <img src="/images/demo.jpg">
+    </div>
+    <p>sadfahsdfjkafgbsdfg</p>
+</body>
+</html>

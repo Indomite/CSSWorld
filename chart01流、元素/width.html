@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+    /* 
+        width的默认值是auto，可以充分利用可用的空间、句有收缩和包裹性
+        当元素为block的时候，此时具有流的特性
+        也就是说，当前为block的元素width是100%
+     */
+        width: 280px;
+        margin: 0 auto;
+        text-align: left;
+    }
+    td {
+        border: 1px solid rgb(121, 70, 70);
+    }
+
+    .width {
+    /* 
+        通过观察可以发现，在页面中添加了width之后
+        元素的宽度填充到了除去margin之后的所剩宽度
+        也就导致边框线会会出现溢出的情况
+     */
+    width: 100%;
+    }
+    .nav {
+    background-color: #cd0000;
+    }
+    .nav-a {
+    display: block;
+    margin: 0 10px;
+    padding: 9px 10px;
+    border-bottom: 1px solid #b70000;
+    border-top: 1px solid #de3636;
+    color: #fff;
+    }
+    .nav-a:first-child { border-top: 0; }
+    .nav-a + .nav-a + .nav-a { border-bottom: 0;}
+</style>
+<body>
+    <table>
+        <tr>
+            <td>就1列就1列就1列就1列就1列</td>
+            <td>当父级relative，且宽度很小的时候，例如...</td>
+            <td>当父级relative，且宽度很小的时候，例如...</td>
+        </tr>
+    </table>
+
+    <h4>无宽度，借助流动性</h4>
+    <div class="nav">
+    <a href="" class="nav-a">导航1</a>
+    <a href="" class="nav-a">导航2</a>
+    <a href="" class="nav-a">导航3</a>
+    </div>
+    <h4>width:100%</h4>
+    <div class="nav">
+    <a href="" class="nav-a width">导航1</a>
+    <a href="" class="nav-a width">导航2</a>
+    <a href="" class="nav-a width">导航3</a>
+    </div>
+</body>
+</html>
