@@ -14,7 +14,7 @@
 
 ### 流体性
 
-体现在 margin、border、padding、content 盒子模型的四大内容区域的自动分配水平和垂直方向空间
+体现在 `margin、border、padding、content` 盒子模型的四大内容区域的自动分配水平和垂直方向空间
 
 #### 外部属性和流体特性
 
@@ -37,43 +37,62 @@
 块级盒子：块级元素，一个元素占一行，不换行，可以设置宽高
 **注意：block 和块级元素并不是相等的，块级元素还包括 item-list，table 等属性**
 内联盒子：内联元素，在行内显示，不支持设置宽高，默认的宽高就是文字的宽高
+**注意：inline 和内联元素并不是相等的，块级元素还包括 item-list，table 等属性**
+**块级负责结构，内联负责内容**
 
 #### 内在盒子
 
-内在盒子主要又分为四大块：margin box、border-box、padding box、content box
+内在盒子主要又分为四大块：`margin box、border-box、padding box、content box`
 
 ##### margin box
 
-并没有 margin-box 的属性，margin 的背景永远都是透明的
-当 margin 设置宽高的时候，对本身的尺寸是不会有所影响的，也就导致不会出现有 margin-box 属性
+并没有 `margin-box` 的属性，`margin` 的背景永远都是透明的
+当 `margin` 设置宽高的时候，对本身的尺寸是不会有所影响的，也就导致不会出现有 `margin-box` 属性
 
 ## 元素剖析
 
 ### inline、block、inline-block
 
-block 其实是由外在的块级盒子和内在的块级容器盒子组成
-inline-block 就是外在的内联盒子和内在的块级容器盒子组成
-也就是这种原因使得 inline-block 可以在一行显示（inline）也可以设置宽高（block）
-inline 就是内外都是内联盒子的
+`block` 其实是由外在的块级盒子和内在的块级容器盒子组成
+`inline-block` 就是外在的内联盒子和内在的块级容器盒子组成
+也就是这种原因使得 `inline-block` 可以在一行显示 `inline` 也可以设置宽高 `block`
+`inline` 就是内外都是内联盒子的
 
 **宽高会作用在内在盒子上**
 
 ### width、height
 
-宽度作用在content box上，当给元素设置宽度属性之后，加上padding等，盒子变宽就是这个道理
-流动性丢失，对于块级元素当给元素设置了宽度之后，原有的默认的width:auto属性失效后，流动性失效
+宽度作用在 `content box` 上，当给元素设置宽度属性之后，加上 `padding` 等，盒子变宽就是这个道理
+流动性丢失，对于块级元素当给元素设置了宽度之后，原有的默认的 `width:auto` 属性失效后，流动性失效
 
-关于height:100%的问题，当父元素的height:auto之后，子元素设置高度的百分比是没有效果的
+关于 `height:100%` 的问题，当父元素的 `height:auto` 之后，子元素设置高度的百分比是没有效果的
 
+**解决方式：**
+
+1、设定显示的高度值
+2、使用绝对定位（绝对定位的宽高百分比是相对 `padding box` 的，但是非绝对定位元素是相对于 `content box` 的）
 
 #### 流体布局下的宽度分离原则
 
-width属性不影响padding/border属性的情况下分开写
-设置宽度的元素独占一个作用块，方便维护但是通过padding，border属性的变化，达到不修改width的效果更佳
+width 属性不影响 `padding/border` 属性的情况下分开写
+设置宽度的元素独占一个作用块，方便维护但是通过 `padding，border` 属性的变化，达到不修改 width 的效果更佳
 
 ### box-sizing
 
-顾名思义，就是盒尺寸**box-sizing主要用于改变width属性**
-默认情况下，width作用在content-box上
-通常写css的时候，我们会写box-sizing: border-box,也就是宽度作用在border-box上
-content box从宽度值中释放，和padding共同分配width
+顾名思义，就是盒尺寸**box-sizing 主要用于改变 width 属性**
+默认情况下，width 作用在 `content-box` 上
+通常写 css 的时候，我们会写 `box-sizing: border-box`,也就是宽度作用在 `border-box` 上
+`content box` 从宽度值中释放，和 padding 共同分配 width
+
+### min-width/max-width,min-heigth/max-height
+
+1、适用于自适应的流体布局，IE7 支持 `min-width/max-width`
+2、初始值的问题，max 系列的初始值是 none，但是 min 系类的初始值是 0
+3、关于权值的问题，超越`! important`，超越最大
+权值是最大的：`max-width` 会覆盖 width，尽管有`! important`加持
+min 属性会超越 max， `min-width`属性会覆盖`max-width`
+
+### 幽灵空白节点
+
+在 HTML5 文档声明中，内联元素的所有解析和渲染表现就如同每一个行框盒子前面有一个“空白节点一样”
+永远透明，永远不占据宽度，无法用脚本获取，但是又真正的存在

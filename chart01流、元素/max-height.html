@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        margin: 0 auto;
+        width: 300px;
+    }
+    .element {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .25s;
+    }
+    /*
+        巧妙之处：利用max-height实现展开收缩的效果
+        一般来说实现展开收缩的话，我们通常使用的是dispaly: none实现
+        但是，当导航栏的数据是动态的时候，高度就是不固定的，默认就是height: auto
+        这时就有一个问题：当要实现动画过渡效果的时候，height没有指定值，导致没有办法实现
+        这时候使用max-height可以实现效果
+    */
+    :checked ~ .element {
+        max-height: 300px;
+    }
+</style>
+<body>
+    <div>
+        <input id="check" type="checkbox">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic porro reprehenderit corporis tempora? Minima placeat quo ad dignissimos explicabo esse, atque reiciendis eos assumenda excepturi voluptatum accusamus totam tenetur ut.</p>
+        <div class="element">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa inventore doloremque illum, a perspiciatis soluta animi voluptate ullam est at quasi. Cumque vero assumenda commodi corrupti molestiae molestias eum dignissimos.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa inventore doloremque illum, a perspiciatis soluta animi voluptate ullam est at quasi. Cumque vero assumenda commodi corrupti molestiae molestias eum dignissimos.</p>
+        </div>
+        <label for="check" class="check-in">更多↓</label>
+        <label for="check" class="check-out">收起↑</label>
+    </div>
+</body>
+</html>
