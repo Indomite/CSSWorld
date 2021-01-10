@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .father {
+        margin: 0 auto;
+        width: 550px;
+        border: 1px solid #444;
+        overflow: hidden;
+    }
+    .father > img {
+        float: left;
+    }
+    .girl {
+        /* 环绕和自适应的区别所在,通过指定左边距使得其对其右侧 */
+        margin-left: 400px;
+    }
+</style>
+<body>
+    <div class="father">
+        <img src="../images/demo.jpg">
+        <p class="girl">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad fugiat et minus corrupti, aspernatur earum molestias culpa accusantium tenetur! A explicabo sit distinctio dolores odit voluptatum quia quo iste neque?</p>
+    </div>
+</body>
+</html>
